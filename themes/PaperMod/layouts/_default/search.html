@@ -1,0 +1,75 @@
+{{ define "main" }}
+<div class="post-content" style="padding: 20px; max-width: 800px; margin: 0 auto;">
+  <h1>搜索</h1>
+  <input 
+    type="text" 
+    id="searchInput" 
+    placeholder="输入关键词搜索文章..." 
+    style="width: 100%; padding: 12px 16px; font-size: 16px; border: 1px solid #ddd; border-radius: 6px; box-sizing: border-box;"
+  >
+  <div id="searchResults" style="margin-top: 24px;"></div>
+</div>
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const resultBox = document.getElementById('searchResults');
+let allPosts = [];
+
+// 加载文章索引
+async function loadIndex() {
+  try {
+    const res = await fetch('/hugo-blog/index.json');
+    allPosts = await res.json();
+  } catch (err) {
+    resultBox.innerHTML = '<p style="color:red">搜索索引加载失败</p>';
+    console.error(err);
+  }
+}
+
+// 原生关键词匹配（标题+摘要）
+function searchPosts(keyword) {
+  const kw = keyword.toLowerCase();
+  return allPosts.filter(post => {
+    const title = (post.title || '').toLowerCase();
+    const summary = (post.summary || '').toLowerCase();
+    const content = (post.content || '').toLowerCase();
+    return title.includes(kw) || summary.includes(kw) || content.includes(kw);
+  });
+}
+
+// 渲染结果
+function renderResults(list) {
+  if (!list.length) {
+    resultBox.innerHTML = '<p style="opacity:.7">未找到相关内容</p>';
+    return;
+  }
+  let html = '<ul style="list-style:none;padding:0">';
+  list.slice(0, 20).forEach(item => {
+    const title = item.title || '无标题';
+    const link = item.permalink || '#';
+    const summary = item.summary || '暂无摘要';
+    html += `<li style="margin: 16px 0; padding-bottom: 12px; border-bottom: 1px solid #eee;">
+      <a href="${link}" style="font-size: 18px; text-decoration: none; color: var(--primary);">${title}</a>
+      <p style="opacity:.8; font-size: 14px; margin: 6px 0; line-height: 1.5;">${summary.slice(0, 100)}...</p>
+    </li>`;
+  });
+  html += '</ul>';
+  resultBox.innerHTML = html;
+}
+
+// 实时监听输入
+searchInput.addEventListener('input', e => {
+  const kw = e.target.value.trim();
+  if (!kw) {
+    resultBox.innerHTML = '';
+    return;
+  }
+  const results = searchPosts(kw);
+  renderResults(results);
+});
+
+// 页面加载完成后初始化
+window.addEventListener('DOMContentLoaded', loadIndex);
+</script>
+{{ end }}
+
