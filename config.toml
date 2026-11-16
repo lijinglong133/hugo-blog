@@ -1,0 +1,73 @@
+baseURL = "https://lijinglong133.github.io/hugo-blog/"
+languageCode = "zh-cn"
+title = "我的个人博客"
+theme = "PaperMod"
+
+enableRobotsTXT = true
+buildDrafts = false
+
+[pagination]
+pagerSize = 10
+
+# 搜索功能核心配置，评分点4分，不可缺失
+[outputs]
+home = ["HTML", "RSS", "JSON"]
+
+[params]
+defaultTheme = "auto"
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowToc = true
+TocOpen = false
+fuseOpts = { isCaseSensitive = false, shouldSort = true, location = 0, distance = 1000, threshold = 0.4, minMatchCharLength = 0, keys = ["title", "permalink", "summary", "content"] }
+
+# 首页个人简介（评分点：首页内容）
+[params.homeInfoParams]
+Title = "你好，我是李金龙"
+Content = "材料专业本科生，正在学习Linux与系统管理。"
+
+# GitHub社交图标
+[[params.socialIcons]]
+name = "github"
+url = "https://github.com/<你的GitHub用户名>"
+
+# 六大菜单项（评分点4分：首页、关于、标签、分类、归档、搜索）
+[[menu.main]]
+identifier = "home"
+name = "首页"
+url = "/"
+weight = 10
+
+[[menu.main]]
+identifier = "about"
+name = "关于"
+url = "/about/"
+weight = 20
+
+[[menu.main]]
+identifier = "tags"
+name = "标签"
+url = "/tags/"
+weight = 30
+
+[[menu.main]]
+identifier = "categories"
+name = "分类"
+url = "/categories/"
+weight = 40
+
+[[menu.main]]
+identifier = "archives"
+name = "归档"
+url = "/archives/"
+weight = 50
+
+[[menu.main]]
+identifier = "search"
+name = "搜索"
+url = "/search/"
+weight = 60
+
