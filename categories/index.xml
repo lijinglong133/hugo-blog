@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Categories on 我的个人博客</title>
     <link>https://lijinglong133.github.io/hugo-blog/categories/</link>
     <description>Recent content in Categories on 我的个人博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 22 Oct 2026 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://lijinglong133.github.io/hugo-blog/categories/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Thu, 22 Oct 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://lijinglong133.github.io/hugo-blog/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web部署</title>
       <link>https://lijinglong133.github.io/hugo-blog/categories/web%E9%83%A8%E7%BD%B2/</link>
